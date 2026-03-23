@@ -1,4 +1,4 @@
-from src.config.data_base import db
+from config.data_base import db
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -8,7 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     phone = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(200), nullable=False)
-    status = db.Column(db.Boolean, default=False)
+    status = db.Column(db.Boolean, nullable=False, default=False)
     verification_code = db.Column(db.String(4))
 
     def to_dict(self):
@@ -18,5 +18,5 @@ class User(db.Model):
             "cnpj": self.cnpj,
             "email": self.email,
             "phone": self.phone,
-            "status": self.status
+            "status": "ATIVO" if self.status else "INATIVO"
         }

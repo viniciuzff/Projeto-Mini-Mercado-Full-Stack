@@ -1,5 +1,6 @@
 from flask import request, jsonify, make_response
 from src.Application.Service.user_service import UserService
+from src.Application.Service.auth_service import AuthService
 
 class UserController:
 
@@ -22,3 +23,18 @@ class UserController:
             "mensagem": "Seller cadastrado com sucesso",
             "usuario": user.to_dict()
         }), 200)
+
+    @staticmethod
+    def update_user(user_id):
+        data = request.get_json()
+
+        try:
+            user = UserService.update_user(user_id, data)
+
+            return jsonify({
+                "mensagem": "Usuário atualizado com sucesso",
+                "usuario": user.to_dict()
+            }), 200
+
+        except Exception as e:
+            return jsonify({"erro": str(e)}), 400
