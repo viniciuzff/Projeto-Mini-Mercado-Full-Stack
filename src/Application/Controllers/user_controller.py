@@ -2,6 +2,7 @@ from flask import request, jsonify, make_response
 from src.Application.Service.user_service import UserService
 from src.Application.Service.auth_service import AuthService
 
+
 class UserController:
 
     @staticmethod
@@ -38,3 +39,9 @@ class UserController:
 
         except Exception as e:
             return jsonify({"erro": str(e)}), 400
+
+    @staticmethod
+    def get_me(current_user):
+        return jsonify({
+            "usuario": current_user.to_dict()
+        }), 200

@@ -13,5 +13,5 @@ class WhatsApp:
         client.messages.create(
             body=f"Seu código de ativação é: {code}",
             from_='whatsapp:+14155238886',
-            to='whatsapp:+5511988410000'
+            to='whatsapp:+5511988413657'
         )
