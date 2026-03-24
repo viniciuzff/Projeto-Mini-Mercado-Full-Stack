@@ -5,8 +5,8 @@ class WhatsApp:
     @staticmethod
     def whats_app(code):
 
-        account_sid = "SEU_ACCOUNT_SID"
-        auth_token = "SEU_AUTH_TOKEN"
+        account_sid = ""
+        auth_token = ""
 
         client = Client(account_sid, auth_token)
 

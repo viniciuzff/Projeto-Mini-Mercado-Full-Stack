@@ -1,5 +1,8 @@
 # 📦 Gestão de Estoque para Mini Mercados
 
+Nome dos integrantes: Murillo Souza, Tulio Costa, Vinicius Ferreira
+
+
 ## 📌 Objetivo
 Desenvolver um sistema para gestão de estoque e vendas de mini mercados, garantindo segurança, controle de acesso e gestão eficiente de produtos e vendas.
 
