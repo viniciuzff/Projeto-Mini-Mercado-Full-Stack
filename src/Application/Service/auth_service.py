@@ -1,10 +1,11 @@
 from werkzeug.security import check_password_hash
 import jwt
 import datetime
+import os
 from Infrastructure.Model.user import User
 from config.data_base import db
 
-SECRET_KEY = "sua_chave_secreta"  # depois colocar em .env
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback_inseguro")
 
 class AuthService:
 
@@ -22,7 +23,7 @@ class AuthService:
             raise Exception("Senha inválida")
 
         if not user.status:
-            raise Exception("Usuário não ativado")
+            raise Exception("Conta não ativada. Verifique seu WhatsApp.")
 
         payload = {
             "user_id": user.id,
@@ -37,7 +38,6 @@ class AuthService:
             "user": user.to_dict()
         }
 
-    # 👇 NOVO MÉTODO
     @staticmethod
     def verify_user(data):
         email = data.get("email")
@@ -53,9 +53,6 @@ class AuthService:
 
         user.status = True
         user.verification_code = None
-
         db.session.commit()
 
-        return {
-            "message": "Usuário ativado com sucesso"
-        }
+        return {"message": "Conta ativada com sucesso"}

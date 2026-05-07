@@ -1,13 +1,11 @@
 from flask import request, jsonify
 from Application.Service.auth_service import AuthService
-from src.Application.Service.auth_service import AuthService
 
 class AuthController:
 
     @staticmethod
     def login():
         data = request.get_json()
-
         try:
             result = AuthService.login(data)
             return jsonify(result), 200
@@ -17,7 +15,6 @@ class AuthController:
     @staticmethod
     def verify():
         data = request.get_json()
-
         try:
             result = AuthService.verify_user(data)
             return jsonify(result), 200
