@@ -1,8 +1,10 @@
 from Application.Controllers.user_controller import UserController
 from Application.Controllers.auth_controller import AuthController
 from Application.Controllers.product_controller import ProductController
+from Application.Controllers.sale_controller import SaleController
 from flask import jsonify, make_response
 from middlewares.auth_middleware import token_required
+from Application.Controllers.dashboard_controller import DashboardController
 
 
 def init_routes(app):
@@ -56,3 +58,20 @@ def init_routes(app):
     @token_required
     def inactivate_product(current_user, product_id):
         return ProductController.inactivate_product(current_user, product_id)
+
+    # --- Vendas ---
+    @app.route('/api/sales', methods=['POST'])
+    @token_required
+    def create_sale(current_user):
+        return SaleController.create_sale(current_user)
+
+    @app.route('/api/sales', methods=['GET'])
+    @token_required
+    def list_sales(current_user):
+        return SaleController.list_sales(current_user)
+    
+        # --- Dashboard ---
+    @app.route('/api/dashboard', methods=['GET'])
+    @token_required
+    def get_dashboard(current_user):
+        return DashboardController.get_dashboard(current_user)
